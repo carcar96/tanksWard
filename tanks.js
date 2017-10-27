@@ -17,7 +17,6 @@ window.onkeydown = function(ev){
 	var oEv = ev || event;
 	var keyCode = oEv.keyCode;
 
-
 	//左37 右39 上38 下40 确认 13
 	switch(keyCode){
 		case 13://确认
@@ -174,13 +173,16 @@ function bulletMove(obj,attr,iTarget){
 function over(o){	
 
 	if(document.body.children.length<4){
-		cosole.log(document.body.children.length)
-		return
+		return;
 	}else{
+		var oLeft = o.offsetLeft;
+		var oTop = o.offsetTop;
+		var tLeft = oTarget.offsetLeft;
+		var tTop = oTarget.offsetTop;
 		switch(key){
 			case 0://左
-				if(o.offsetLeft>oTarget.offsetLeft && (o.offsetLeft-oTarget.offsetLeft)<oTarget.clientWidth){
-					if(((o.offsetTop-oTarget.offsetTop)<0 &&(oTarget.offsetTop-o.offsetTop)<o.clientHeight )|| ((o.offsetTop-oTarget.offsetTop)>0 && (o.offsetTop-oTarget.offsetTop)<oTarget.clientHeight)){
+				if(oLeft>tLeft && (oLeft-tLeft)<oTarget.clientWidth){
+					if(((oTop-tTop)<0 &&(tTop-oTop)<o.clientHeight )|| ((oTop-tTop)>0 && (oTop-tTop)<oTarget.clientHeight)){
 						clearInterval(o.timer)
 						oTarget.style.display = 'none';
 						oUl.removeChild(o)
@@ -188,8 +190,8 @@ function over(o){
 				}
 				break;
 			case 1://右
-				if(oTarget.offsetTop>o.offsetTop && (oTarget.offsetTop-o.offsetTop)<o.clientHeight || o.offsetTop>oTarget.offsetTop && (o.offsetTop-oTarget.offsetTop)<oTarget.clientHeight){
-					if(o.offsetLeft<oTarget.offsetLeft && (oTarget.offsetLeft-o.offsetLeft)<o.clientWidth){
+				if(tTop>oTop && (tTop-oTop)<o.clientHeight || oTop>tTop && (oTop-tTop)<oTarget.clientHeight){
+					if(oLeft<tLeft && (tLeft-oLeft)<o.clientWidth){
 						clearInterval(o.timer)
 						oTarget.style.display = 'none';
 						oUl.removeChild(o)
@@ -197,8 +199,8 @@ function over(o){
 				}
 				break;				
 			case 2://上
-				if(oTarget.offsetLeft>o.offsetLeft && (oTarget.offsetLeft-o.offsetLeft)< o.clientWidth || o.offsetLeft>oTarget.offsetLeft && (o.offsetLeft-oTarget.offsetLeft)<oTarget.clientWidth){
-					if(o.offsetTop>oTarget.offsetTop && (o.offsetTop-oTarget.offsetTop)<oTarget.clientHeight){
+				if(tLeft>oLeft && (tLeft-oLeft)< o.clientWidth || oLeft>tLeft && (oLeft-tLeft)<oTarget.clientWidth){
+					if(oTop>tTop && (oTop-tTop)<oTarget.clientHeight){
 						clearInterval(o.timer)
 						oTarget.style.display = 'none';
 						oUl.removeChild(o)
@@ -206,8 +208,8 @@ function over(o){
 				}
 				break;
 			case 3://下
-				if(oTarget.offsetLeft>o.offsetLeft && (oTarget.offsetLeft-o.offsetLeft)< o.clientWidth || o.offsetLeft>oTarget.offsetLeft && (o.offsetLeft-oTarget.offsetLeft)<oTarget.clientWidth){
-					if(oTarget.offsetTop>o.offsetTop && (oTarget.offsetTop-o.offsetTop)<o.clientHeight){
+				if(tLeft>oLeft && (tLeft-oLeft)< o.clientWidth || oLeft>tLeft && (oLeft-tLeft)<oTarget.clientWidth){
+					if(tTop>oTop && (tTop-oTop)<o.clientHeight){
 						clearInterval(o.timer)
 						oTarget.style.display = 'none';
 						oUl.removeChild(o)
